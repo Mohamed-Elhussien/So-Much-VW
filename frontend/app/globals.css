@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-fraunces: 'Fraunces', serif;
+  --font-manrope: 'Manrope', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #FBF3F0;
+  color: #2B1B24;
+}
+
+/* شريط السواتش المميز — بيتكرر كموتيف في أكتر من مكان بالموقع */
+.swatch-strip {
+  display: flex;
+  height: 6px;
+  border-radius: 999px;
+  overflow: hidden;
+}
+.swatch-strip > span {
+  flex: 1;
+}
+
+/* خط تحت العنوان بدل الفواصل العادية — إحساس "قلم آيلاينر" */
+.eyeliner-rule {
+  display: inline-block;
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, #C9A15B, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Glassmorphism — فاتح (للاستخدام فوق الكريمي) وغامق (فوق ink) */
+.glass-card {
+  background: rgba(255, 253, 251, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+.glass-card-dark {
+  background: rgba(43, 27, 36, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.glass-nav {
+  background: rgba(251, 243, 240, 0.72);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+}
+
+/* خلفية معتمة بالكامل (بدون شفافية) للقوائم المنسدلة وقوائم الموبايل
+   — الشفافية كانت بتخلي النص صعب القراءة فوق محتوى الصفحة اللي وراه. */
+.nav-panel-solid {
+  background: #FFFDFB;
+  border: 1px solid rgba(43, 27, 36, 0.08);
+}
+
+/* ⚡ أنيميشن دخول/خروج القوائم المنسدلة (Radix NavigationMenu).
+   Radix بيحط data-state="open"|"closed" تلقائيًا على الـ Content،
+   واحنا بس بنربط الحركة بيهم هنا — مش محتاجين مكتبة إضافية. */
+.nav-content-motion {
+  transform-origin: top center;
+}
+.nav-content-motion[data-state='open'] {
+  animation: navContentIn 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-content-motion[data-state='closed'] {
+  animation: navContentOut 0.18s ease-in;
+}
+@keyframes navContentIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes navContentOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+
+}
+/* ضيفه في آخر frontend/app/globals.css */
+.rich-text { @apply text-sm leading-relaxed text-ink/70; }
+.rich-text > :first-child { @apply mt-0; }
+.rich-text h2 { @apply mt-10 mb-3 font-display text-2xl italic text-ink; }
+.rich-text h3 { @apply mt-6 mb-2 font-display text-xl text-ink; }
+.rich-text h4 { @apply mt-4 mb-1 text-sm font-semibold text-ink; }
+.rich-text p  { @apply mt-3; }
+.rich-text strong, .rich-text b { @apply font-semibold text-ink; }
+.rich-text ul, .rich-text ol { @apply mt-3 space-y-1.5 pl-5; }
+.rich-text ul { list-style: disc; }
+.rich-text ol { list-style: decimal; }
+.rich-text a  { @apply underline underline-offset-2 hover:text-ink; }
+.rich-text hr { @apply my-8 border-ink/10; }
+.rich-text table { @apply my-4 w-full border-collapse text-sm; display: block; overflow-x: auto; }
+.rich-text th, .rich-text td { @apply border border-ink/10 px-3 py-2 text-left align-top; }
+.rich-text th { @apply bg-ink/5 font-semibold text-ink; }

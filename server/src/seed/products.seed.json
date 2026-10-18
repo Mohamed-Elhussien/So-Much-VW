@@ -1,0 +1,423 @@
+[
+  {
+    "id": 1,
+    "name": "Cherry Bomb Velvet Lipstick",
+    "category": "lipstick",
+    "department": "makeup",
+    "price": 320,
+    "salePrice": 240,
+    "tone": "#8C2F39",
+    "stock": 24,
+    "customTag": "Bestseller",
+    "description": "A blurred-matte finish in a deep, unapologetic red.",
+    "variants": [
+      {
+        "colorName": "Cherry Bomb",
+        "tone": "#8C2F39",
+        "image": null,
+        "available": true
+      },
+      {
+        "colorName": "Rosewood",
+        "tone": "#B23A4A",
+        "image": null,
+        "available": true
+      },
+      {
+        "colorName": "Merlot",
+        "tone": "#6E2430",
+        "image": null,
+        "available": false
+      },
+      {
+        "colorName": "Coral Flush",
+        "tone": "#D65C6A",
+        "image": null,
+        "available": true
+      },
+      {
+        "colorName": "Deep Plum",
+        "tone": "#4A1820",
+        "image": null,
+        "available": false
+      }
+    ],
+    "brand": "Maybelline"
+  },
+  {
+    "id": 2,
+    "name": "First Date Satin Lipstick",
+    "category": "lipstick",
+    "department": "makeup",
+    "price": 290,
+    "tone": "#E8A0A8",
+    "stock": 3,
+    "customTag": null,
+    "description": "A soft warm pink with just enough shine.",
+    "variants": [
+      {
+        "colorName": "Blush Pink",
+        "tone": "#E8A0A8",
+        "image": null,
+        "available": true
+      },
+      {
+        "colorName": "Petal",
+        "tone": "#F0BFC4",
+        "image": null,
+        "available": true
+      },
+      {
+        "colorName": "Dusty Rose",
+        "tone": "#D98790",
+        "image": null,
+        "available": true
+      },
+      {
+        "colorName": "Mauve",
+        "tone": "#C96E78",
+        "image": null,
+        "available": false
+      }
+    ],
+    "brand": "Flormar"
+  },
+  {
+    "id": 3,
+    "name": "Second-Skin Foundation",
+    "category": "foundation",
+    "department": "makeup",
+    "price": 480,
+    "salePrice": 390,
+    "tone": "#D8B48A",
+    "stock": 4,
+    "customTag": null,
+    "description": "Buildable coverage that never looks like makeup.",
+    "variants": [
+      {
+        "colorName": "Porcelain",
+        "tone": "#F2D9B8",
+        "image": null,
+        "available": true
+      },
+      {
+        "colorName": "Sand",
+        "tone": "#E8C49C",
+        "image": null,
+        "available": true
+      },
+      {
+        "colorName": "Honey",
+        "tone": "#D8B48A",
+        "image": null,
+        "available": true
+      },
+      {
+        "colorName": "Caramel",
+        "tone": "#B8895E",
+        "image": null,
+        "available": false
+      },
+      {
+        "colorName": "Chestnut",
+        "tone": "#8C6239",
+        "image": null,
+        "available": true
+      },
+      {
+        "colorName": "Espresso",
+        "tone": "#5E3D22",
+        "image": null,
+        "available": false
+      }
+    ],
+    "brand": "Catrice"
+  },
+  {
+    "id": 4,
+    "name": "No-Shine Foundation",
+    "category": "foundation",
+    "department": "makeup",
+    "price": 460,
+    "tone": "#C89B72",
+    "stock": 18,
+    "customTag": null,
+    "description": "12-hour shine control for oily and combo skin.",
+    "variants": [
+      {
+        "colorName": "Ivory",
+        "tone": "#EAD1AA",
+        "image": null,
+        "available": true
+      },
+      {
+        "colorName": "Beige",
+        "tone": "#C89B72",
+        "image": null,
+        "available": true
+      },
+      {
+        "colorName": "Tan",
+        "tone": "#9C6E45",
+        "image": null,
+        "available": true
+      },
+      {
+        "colorName": "Deep",
+        "tone": "#6B4527",
+        "image": null,
+        "available": false
+      }
+    ],
+    "brand": "Essence"
+  },
+  {
+    "id": 5,
+    "name": "Desert Rose Eyeshadow Palette",
+    "category": "eyeshadow",
+    "department": "makeup",
+    "price": 550,
+    "tone": "#B98169",
+    "stock": 12,
+    "customTag": "New In",
+    "description": "9 warm shades, matte to shimmer, zero filler.",
+    "variants": [
+      {
+        "colorName": "Desert Rose",
+        "tone": "#B98169",
+        "image": null,
+        "available": true
+      },
+      {
+        "colorName": "Berry Wine",
+        "tone": "#8C2F39",
+        "image": null,
+        "available": true
+      },
+      {
+        "colorName": "Golden Sand",
+        "tone": "#E3C58A",
+        "image": null,
+        "available": true
+      }
+    ],
+    "brand": "Topface"
+  },
+  {
+    "id": 6,
+    "name": "Golden Hour Eyeshadow Palette",
+    "category": "eyeshadow",
+    "department": "makeup",
+    "price": 580,
+    "salePrice": 460,
+    "tone": "#C9A15B",
+    "stock": 2,
+    "customTag": null,
+    "description": "Bronze and gold tones built for after dark.",
+    "variants": [
+      {
+        "colorName": "Golden Hour",
+        "tone": "#C9A15B",
+        "image": null,
+        "available": true
+      },
+      {
+        "colorName": "Bronze Dust",
+        "tone": "#A67F3E",
+        "image": null,
+        "available": false
+      }
+    ],
+    "brand": "Amanda"
+  },
+  {
+    "id": 7,
+    "name": "Vitamin C Glow Serum",
+    "category": "skincare",
+    "department": "haircare",
+    "price": 620,
+    "tone": "#E3C58A",
+    "stock": 30,
+    "customTag": "Bestseller",
+    "description": "Evens tone, fades dullness, does the actual work.",
+    "variants": [],
+    "brand": "L'Oreal Paris"
+  },
+  {
+    "id": 8,
+    "name": "Everyday SPF30 Moisturizer",
+    "category": "skincare",
+    "department": "haircare",
+    "price": 410,
+    "tone": "#F3D6D8",
+    "stock": 16,
+    "customTag": null,
+    "description": "Lightweight hydration with built-in sun protection.",
+    "variants": [],
+    "brand": "Garnier"
+  },
+  {
+    "id": 9,
+    "name": "Peach Glow Cream Blush",
+    "category": "blusher",
+    "department": "makeup",
+    "price": 260,
+    "tone": "#EBB5A6",
+    "stock": 20,
+    "customTag": null,
+    "description": "Warm, blendable, fingertip-friendly flush.",
+    "variants": [
+      {
+        "colorName": "Peach Glow",
+        "tone": "#EBB5A6",
+        "image": null,
+        "available": true
+      },
+      {
+        "colorName": "Rose Flush",
+        "tone": "#E8B4B8",
+        "image": null,
+        "available": true
+      },
+      {
+        "colorName": "Terracotta",
+        "tone": "#D68A7A",
+        "image": null,
+        "available": false
+      }
+    ],
+    "brand": "Essence"
+  },
+  {
+    "id": 10,
+    "name": "Rose Petal Powder Blush",
+    "category": "blusher",
+    "department": "makeup",
+    "price": 240,
+    "salePrice": 190,
+    "tone": "#E8B4B8",
+    "stock": 0,
+    "customTag": null,
+    "description": "A soft, natural flush that photographs well.",
+    "variants": [
+      {
+        "colorName": "Rose Petal",
+        "tone": "#E8B4B8",
+        "image": null,
+        "available": true
+      },
+      {
+        "colorName": "Petal Dust",
+        "tone": "#F3D6D8",
+        "image": null,
+        "available": true
+      }
+    ],
+    "brand": "Catrice"
+  },
+  {
+    "id": 11,
+    "name": "Big Volume Mascara",
+    "category": "mascara",
+    "department": "makeup",
+    "price": 280,
+    "tone": "#2B1B24",
+    "stock": 22,
+    "customTag": "New In",
+    "description": "Noticeable lash volume from the very first coat.",
+    "variants": [],
+    "brand": "Maybelline"
+  },
+  {
+    "id": 12,
+    "name": "No-Smudge Waterproof Mascara",
+    "category": "mascara",
+    "department": "makeup",
+    "price": 300,
+    "tone": "#3A2A33",
+    "stock": 14,
+    "customTag": null,
+    "description": "Built to survive tears, humidity, and long days.",
+    "variants": [],
+    "brand": "Flormar"
+  },
+  {
+    "id": 13,
+    "name": "Amber Oud Eau de Parfum",
+    "category": "perfume",
+    "department": "fragrance",
+    "price": 1450,
+    "tone": "#C9A15B",
+    "stock": 9,
+    "customTag": "Bestseller",
+    "description": "A warm oriental blend of amber, oud, and soft spice.",
+    "variants": [],
+    "brand": "So Much Atelier"
+  },
+  {
+    "id": 14,
+    "name": "Blush Vanille Eau de Parfum",
+    "category": "perfume",
+    "department": "fragrance",
+    "price": 1280,
+    "salePrice": 990,
+    "tone": "#E8B4B8",
+    "stock": 15,
+    "customTag": null,
+    "description": "Soft vanilla and musk with a hint of pink pepper.",
+    "variants": [],
+    "brand": "So Much Atelier"
+  },
+  {
+    "id": 15,
+    "name": "Woven Straw Half-Moon Bag",
+    "category": "bags",
+    "department": "leather",
+    "price": 795,
+    "tone": "#D8B48A",
+    "stock": 7,
+    "customTag": "New In",
+    "description": "Hand-woven straw bag with tassel details for warm days.",
+    "variants": [
+      {
+        "colorName": "Natural",
+        "tone": "#D8B48A",
+        "image": null,
+        "available": true
+      },
+      {
+        "colorName": "Bleached",
+        "tone": "#EAD9BE",
+        "image": null,
+        "available": true
+      }
+    ],
+    "brand": "So Much Leather"
+  },
+  {
+    "id": 16,
+    "name": "Quilted Crossbody Bag",
+    "category": "bags",
+    "department": "leather",
+    "price": 525,
+    "tone": "#C9A15B",
+    "stock": 11,
+    "customTag": null,
+    "description": "A structured crossbody with a soft quilted texture.",
+    "variants": [
+      {
+        "colorName": "Gold Straw",
+        "tone": "#C9A15B",
+        "image": null,
+        "available": true
+      },
+      {
+        "colorName": "Ivory",
+        "tone": "#F2E9DC",
+        "image": null,
+        "available": true
+      }
+    ],
+    "brand": "So Much Leather"
+  }
+]

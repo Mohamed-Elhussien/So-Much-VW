@@ -1,0 +1,23 @@
+# ---- dependencies / build ----
+node_modules/
+.next/
+out/
+dist/
+
+# ---- أسرار: ما تترفعش أبدًا (الـ *.example هي اللي بتترفع) ----
+.env
+.env.*
+!.env.example
+!.env.local.example
+
+# ---- ملفات مؤقتة من الـ sync (فيها أسماء منتجات وتقارير) ----
+sync-log.txt
+sync-report.txt
+price-report.txt
+
+# ---- متفرقات ----
+*.zip
+*.log
+.DS_Store
+.vercel
+npm-debug.log*
