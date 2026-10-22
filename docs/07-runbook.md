@@ -67,8 +67,21 @@ cd server && node src/scripts/list-image-hosts.js
 ## مسح السلة من المتصفح (للاختبار)
 DevTools ← Application ← Local Storage ← احذف `somuch-cart` ثم refresh.
 
-## تحويل صفحة المنتج لـ Server Component (قبل النشر)
-احذف `frontend/app/product/[slug]/page.jsx`، وسمّي `page.server.jsx` ← `page.jsx`، واضبط `API_URL` في `.env.local`. اختبر بـ `npm run build && npm run start` ثم View Source (لازم تلاقي الوصف في الـ HTML).
+## تشغيل الإنتاج محليًا (قبل أي نشر)
+```bash
+cd server   && npm start                    # بدون --watch
+cd frontend && npm run build && npm run start   # http://localhost:3000
+```
+`npm run start` مابيحدّثش نفسه: **أي تعديل في الكود = `npm run build` تاني.** صفحة المنتج في الـ build لازم تظهر `ƒ /product/[slug]`.
+تأكيد الـ SSR: صفحة منتج ← `Ctrl+U` ← ابحث عن جزء من الوصف: لازم يكون موجود.
+
+## صفحة منتج بتفتح 404 أو مخفية
+- **404 افتراضي من Next (خلفية سودا):** المسار من غير `page.jsx`. اتأكد إن الملف اسمه `page.jsx` بالظبط (`08` P-32).
+- **صفحة "المنتج مش موجود" بتاعتنا:** الـ API رد 404. شغّل `node src/scripts/find-product.js "جزء من الاسم"`: بيطبع الـ slug والسعر وهل المنتج مخفي لأن سعره 0.
+- ترمنال الفرونت بيكتب `[getProduct] ...` بالسبب والرابط.
+
+## التأكد من ألوان الشيدات
+`node src/scripts/check-shade-tones.js` (كل المنتجات) أو `node src/scripts/check-shade-tones.js "اسم"` (منتج واحد).
 
 ## لما حاجة تبوّظ
 | العرض | روح لـ |

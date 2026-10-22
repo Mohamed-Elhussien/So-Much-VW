@@ -8,7 +8,7 @@
 |---|---|---|---|
 | `/` | Server Component يركّب أقسام Client | `useProducts` داخل الأقسام | Hero, Categories, Offers, CategorySection×4 (Make Up / Hair & Skin Care / Fragrance / Leather), WhyUs, Newsletter |
 | `/shop` | Client | `useProducts` | صفحة واحدة لكل التصفح. فلاتر في الـ URL: `department, category, brand, search, onSale, minPrice, maxPrice, page` (24/صفحة، ترقيم مع ellipsis وخانة "go to page") |
-| `/product/[slug]` | **CSR مؤقتًا** (انظر تحت) | `useProduct` | تفاصيل + شيدات + وصف منسّق + منتجات مشابهة |
+| `/product/[slug]` | **Server Component** (ISR 5 دقايق، `ƒ` في الـ build) | `getProduct` (سيرفر) + `ProductMain`/`RelatedProducts` (عميل) | تفاصيل + شيدات + وصف منسّق + منتجات مشابهة. منتج سعره 0 ← 404 |
 | `/checkout` | Client | السلة + `POST /api/orders` | راجع `04` |
 | `/about` | Server (HTML ثابت) | : | |
 | `/contact` | Client | : | **شكل فقط**: الإرسال بيعمل `setSubmitted(true)` ومفيش backend |
@@ -18,16 +18,16 @@
 `app/product/[slug]/`:
 | الملف | الدور |
 |---|---|
-| `page.jsx` | **CSR مؤقت** (`useProduct`). هيتبدّل بـ `page.server.jsx` قبل Vercel |
-| `page.server.jsx` | Server Component: `generateMetadata` + JSON-LD (`Product`) + ISR 5 دقايق (`lib/getProduct.js`) + fallback للـ CSR لو فشل fetch السيرفر بسبب الشبكة، و`notFound()` لـ 404 الحقيقي |
+| `page.jsx` | **Server Component**: `generateMetadata` (title/description/OG/canonical) + JSON-LD (`Product`) + `notFound()` لـ 404 الحقيقي + fallback للـ CSR (`ProductClientFallback`) لو فشل fetch السيرفر بسبب الشبكة |
+| ~~`page.server.jsx`~~ | **ما يتسمّاش كده**: Next بيعتبر أي ملف مش اسمه `page.jsx` مجرد ملف عادي، فالمسار بيطلع 404 افتراضي (`08` P-32) |
 | `ProductView.jsx` | التركيب (Breadcrumbs + ProductMain + RichContent + RelatedProducts). بدون `'use client'` فبيتعرض من السيرفر والعميل |
 | `ProductMain.jsx` | **الجزيرة التفاعلية الوحيدة** (`'use client'`): اختيار الشيد، الكمية، الإضافة للسلة. بتاخد product **مصغّر** (حقول لازمة بس) |
 | `RichContent.jsx` | الأقسام (الوصف المنسّق + بقايا الأقسام القديمة)، بدون hooks |
 | `RelatedProducts.jsx` | `'use client'`، تحت الـ fold |
 | `ProductClientFallback.jsx`, `ProductStates.jsx`, `loading.jsx`, `not-found.jsx` | الحالات (skeleton / 404 / fallback) |
-| `lib/getProduct.js` | fetch السيرفر بـ `status`: `ok / not-found / error` (يفرّق 404 عن فشل الشبكة) |
+| `lib/getProduct.js` | fetch السيرفر بـ `status`: `ok / not-found / error` (يفرّق 404 عن فشل الشبكة). كاش 5 دقايق (`unstable_cache`) **للنجاح بس** (404 والأخطاء مابتتكاشش)، وفي التطوير من غير كاش. بيكتب في الترمنال الرابط والسبب |
 
-**التحويل لـ Server Component** (قبل Vercel): احذف `page.jsx` الحالي، سمّي `page.server.jsx` ← `page.jsx`، واضبط `API_URL`. باقي الملفات مفيش فيها أي تغيير.
+**تاريخ:** الصفحة بدأت CSR (`useProduct`) بسبب قيد في بيئة التطوير (`08` P-01)، واتحوّلت لـ Server Component. التحويل = الملف اسمه **`page.jsx`** وفيه `generateMetadata` (من غير `'use client'`)، و`API_URL` مضبوط. باقي المكوّنات مبنية تصلح للاتنين.
 الوصف: الهيرو بيعرض `shortDescription` (HTML منضّف)، والقسم تحت بيعرض `descriptionHtml`. لو الحقلين فاضيين (منتجات ديمو) بيرجع للنص القديم. التنسيق من `.rich-text` في `globals.css`.
 
 ## الـ Components
@@ -64,7 +64,7 @@
 | Animations | `swatch-in`, `pulse-glow`, `blob-pulse`, `shimmer`, `dust-float` |
 
 ## الـ SEO
-حاليًا فيه `metadata` في `layout.jsx` بس (عنوان ووصف عام). بعد التحويل لـ Server Component: title/description/OG/canonical لكل منتج + JSON-LD. ⏳ `sitemap.xml` و`robots.txt` لسه ❌.
+`metadata` عام في `layout.jsx`، ولكل منتج: title/description/OG/canonical + JSON-LD (`Product`: اسم/صور/براند/سعر/توفر). ⏳ `sitemap.xml` و`robots.txt` لسه ❌ (`12` B14).
 
 ## نقاط انتباه
 - أسماء الملفات **case-sensitive على Linux/Vercel**: `ProductView.jsx` مش `Productview.jsx` (ويندوز بيسامح).
