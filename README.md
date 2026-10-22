@@ -1,21 +1,85 @@
-# SoMuch
+# SoMuch: مرجع المشروع
 
-متجر إلكتروني (مستحضرات تجميل وعناية وعطور): واجهة Next.js، وسيرفر Express وسيط، وWooCommerce كمصدر للمنتجات والأوردرات.
+**آخر تحديث:** 2026-10-19
 
-| الجزء | المكان |
+متجر إلكتروني لمستحضرات التجميل والعناية والعطور. المنتجات والأوردرات بتتدار من **لوحة WooCommerce** (اللي صاحب المتجر متعوّد عليها)،
+والموقع نفسه (Next.js) بيعرضها بسرعة من نسخة في MongoDB بيحدّثها سكريبت مزامنة، والأوردرات بتتبعت لـ WooCommerce عن طريق سيرفر Express وسيط.
+
+## المكوّنات في سطر
+| الجزء | التقنية | المكان |
+|---|---|---|
+| الواجهة | Next.js 14 (App Router) + React 18 + Tailwind + Zustand + Framer Motion | `frontend/` |
+| الـ API | Express + Mongoose على MongoDB Atlas | `server/` |
+| مصدر الحقيقة | WooCommerce REST API (`test1.somuchstores.com` حاليًا) | خارجي |
+| الدفع | كاش عند الاستلام (COD) فقط حاليًا | انظر `04-orders-checkout.md` |
+
+## خريطة التوثيق: اقرا إيه وإمتى
+| الملف | نوعه | اقراه لما... |
+|---|---|---|
+| [`01-architecture.md`](01-architecture.md) | مرجع | عايز تفهم الصورة الكبيرة وإزاي الأجزاء بتتكلم مع بعض |
+| [`02-backend.md`](02-backend.md) | مرجع | هتشتغل على الـ API أو الـ models أو الأمان |
+| [`03-woocommerce-sync.md`](03-woocommerce-sync.md) | مرجع | منتج ظهر بقسم/براند غلط، أو هتضيف براند/قاعدة تصنيف |
+| [`04-orders-checkout.md`](04-orders-checkout.md) | مرجع | هتشتغل على السلة أو الـ checkout أو الأوردرات |
+| [`05-frontend.md`](05-frontend.md) | مرجع | هتعدّل صفحة أو component أو التصميم |
+| [`06-deployment.md`](06-deployment.md) | مرجع | هتنشر (Vercel + استضافة الـ Express) |
+| [`07-runbook.md`](07-runbook.md) | دليل تشغيل | عايز تنفّذ مهمة متكررة خطوة بخطوة |
+| [`08-problems-and-solutions.md`](08-problems-and-solutions.md) | سجل | ظهرلك error أو سلوك غريب (غالبًا اتحل قبل كده) |
+| [`09-decisions.md`](09-decisions.md) | سجل | عايز تعرف **ليه** اتعمل حاجة بالشكل ده |
+| [`10-roadmap.md`](10-roadmap.md) | قايمة | عايز تعرف إيه اللي لسه ناقص |
+| [`11-tech-stack.md`](11-tech-stack.md) | مرجع | عايز تعرف الأدوات والمكتبات وإصداراتها وليه اتختارت |
+| [`12-open-issues.md`](12-open-issues.md) | قايمة | **كل اللي لسه مفتوح**: قرارات تجارية لصاحب المتجر + مشاكل تقنية غير مؤكدة |
+| [`13-security.md`](13-security.md) | مرجع | هتراجع الأمان أو الأسرار أو الخصوصية |
+| [`14-data-flow-and-caching.md`](14-data-flow-and-caching.md) | مرجع | **فيه dashboard؟ مين بيتحكم في إيه؟ البيانات بتتخزّن (cache) فين وكام دقيقة؟** |
+| [`15-technology-assessment.md`](15-technology-assessment.md) | تقييم | **رأي صريح في التكنولوجيا المستخدمة** وإيه البدائل |
+| [`16-hosting-and-handover.md`](16-hosting-and-handover.md) | مرجع | **متطلبات الاستضافة**، والصلاحيات اللي المراجع محتاجها، واللي لسه ناقص |
+| `server/docs/tasks/*` | سجل تاريخي | وثائق المهام القديمة (قالب في `templates/task.md`) |
+
+## لو إنت مهندس بتراجع المشروع: ابدأ من هنا
+1. **`01-architecture.md`** ثم **`14-data-flow-and-caching.md`**: الصورة الكبيرة، ومين بيتحكم في إيه، والـ cache (15 دقيقة).
+2. **`12-open-issues.md`**: إيه اللي مش مؤكد أو مفتوح، **وده أهم ملف للمراجعة**.
+3. **`04-orders-checkout.md`** ثم **`13-security.md`**: أحسّ جزء (فلوس وبيانات عملاء).
+4. **`03-woocommerce-sync.md`**: منطق المزامنة والتصنيف (أكتر جزء فيه قواعد وتخمين).
+5. **`15-technology-assessment.md`**: اعترض عليه. وبعدها **`08-problems-and-solutions.md`** و**`09-decisions.md`**: عشان ما تقترحش حاجة اتجرّبت واتغيّرت.
+6. **`16-hosting-and-handover.md`**: الاستضافة والصلاحيات واللي لسه ناقص.
+
+**أنهي أجزاء محتاجة عين تانية أكتر:** (1) سبب وقوع الـ server أثناء الأوردر مع `--watch` (B1)، (2) منطق الـ idempotency وحالات الـ `unknown`،
+(3) قواعد التصنيف من الاسم، (4) `unstable_cache` في `getProduct.js` على Vercel (B4). **اللي ما اتجرّبش:** الواجهة (مفيش اختبارات)، والنشر، وأي حمل.
+**صراحة:** الاختبارات (42) على الـ backend بـ fakes عن Mongo وWooCommerce. الاتصال الحقيقي اتجرّب يدويًا على الـ staging بأوردرين.
+
+## قواعد التوثيق (عشان ما يبقاش قديم)
+1. **ملفات المرجع (01–07) بتوصف الوضع الحالي.** أي تغيير في الكود بيغيّر السلوك لازم يتحدّث الملف المناسب **في نفس التغيير**.
+   لو ما عدّلتش الملف، قول ليه في وصف الـ commit.
+2. **السجلات (08، 09) بتتضاف ليها بس، مش بتتعدّل.** مشكلة جديدة اتحلّت = إدخال جديد في آخر `08`. قرار جديد = إدخال في `09`.
+   لو قرار قديم اتغيّر، ما تمسحوش: علّمه "اتبدّل بـ D-xx" وضيف الجديد.
+3. **المهام الكبيرة** ليها ملف في `server/docs/tasks/` بالقالب في `templates/task.md` (الهدف/السياق/الخطوات/القرارات/النتيجة).
+4. **أي معلومة مش مؤكدة** تتكتب بعلامة ⏳ أو "لم يُختبر"، مش كأنها حقيقة.
+
+## حالة المشروع (2026-10-18)
+| الميزة | الحالة |
 |---|---|
-| الواجهة (Next.js 14) | `frontend/` |
-| الـ API (Express + MongoDB) | `server/` |
-| التوثيق الكامل | [`docs/README.md`](docs/README.md) |
+| عرض الكتالوج (Home, Shop, فلاتر, بحث, صفحة منتج) | ✅ شغّال على بيانات حقيقية (1825 منتج) |
+| المزامنة WooCommerce → MongoDB | ✅ شغّالة يدويًا |
+| وصف المنتج المنسّق (HTML) | ✅ شغّال بعد الـ sync |
+| تصنيف المنتجات (قسم/براند/نوع) | ✅ 20 منتج بس محتاجين مراجعة يدوية |
+| ألوان الشيدات المميّزة | ✅ اتأكدت بعد الـ sync (563 منتج، كلها مختلفة) |
+| السلة (Zustand) | ✅ شيدات منفصلة، حفظ في localStorage |
+| إرسال الأوردر لـ WooCommerce | ✅ نجح **أوردرين** على الـ staging (#51518, #51520) بـ `npm start`. ⏳ سبب وقوع السيرفر مع `--watch` غير مؤكد (`12` B1) |
+| صفحة المنتج كـ Server Component | ✅ اتحوّلت (`ƒ /product/[slug]` في الـ build). ⏳ تأكيد الوصف في View Source |
+| Build الإنتاج للواجهة | ✅ `npm run build` نجح (14.2.35) |
+| منتجات من غير سعر | ✅ مخفية تلقائيًا (`12` A1) |
+| النشر (Vercel + Express) | ⏳ ملفات الإعداد جاهزة، لم يتم النشر |
+| Webhooks (تحديث لحظي) | ❌ مش مبني |
+| حسابات العملاء / الدفع الإلكتروني | ❌ مش مبني (`/login` شكل فقط) |
 
-## تشغيل محلي
+## تشغيل سريع محليًا
 ```bash
-cd server   && npm install && cp .env.example .env            # املا القيم
-npm start                                                      # http://localhost:4000
+# Terminal 1: الـ API
+cd server && npm install && cp .env.example .env   # املا .env (MONGODB_URI, WC_*)
+npm run dev                                         # http://localhost:4000
 
+# Terminal 2: الموقع
 cd frontend && npm install && cp .env.local.example .env.local
-npm run dev                                                    # http://localhost:3000
+npm run dev                                         # http://localhost:3000
 ```
-مزامنة المنتجات من WooCommerce: `cd server && node src/scripts/sync-woocommerce-products.js`
-الاختبارات: `cd server && node --test test/orders.test.js` (وباقي ملفات `test/`).
+تفاصيل أكتر ومهام متكررة: [`07-runbook.md`](07-runbook.md).
 
