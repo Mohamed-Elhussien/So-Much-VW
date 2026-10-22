@@ -19,4 +19,3 @@ npm run dev                                                    # http://localhos
 مزامنة المنتجات من WooCommerce: `cd server && node src/scripts/sync-woocommerce-products.js`
 الاختبارات: `cd server && node --test test/orders.test.js` (وباقي ملفات `test/`).
 
-> ⚠️ ملفات `.env` فيها أسرار ومبتترفعش على Git. القوالب `*.example` هي اللي بتترفع.
